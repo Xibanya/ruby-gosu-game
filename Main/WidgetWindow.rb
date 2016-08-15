@@ -3,7 +3,10 @@ require_relative 'GameEngine'
 class WidgetWindow
   attr_accessor :terminated
 
+  INPUT_COOLDOWN = 8
+
   def initialize(window)
+    @window = window
     @box_margin = 8
     @box_source = Array.new
     box_sprite =  Gosu::Image.new('content/UI-Window.png')
@@ -18,12 +21,17 @@ class WidgetWindow
     @widget_list = Array.new
     @window_list = Array.new
 
-    @font  = Gosu::Font.new(16, :name => 'Content/Perfect DOS VGA 437.ttf')
+    @font  = Gosu::Font.new(50, :name => 'Content/accid.ttf')
     @text_z = 10
     @text_box_z = 9
   end
 
   def update
+
+    if @input_cooldown > 0
+      @input_cooldown -= 1
+    end
+
     i = 0
 
     if @child_window_list.length > 0
@@ -92,5 +100,48 @@ class WidgetWindow
     @box_source[8].draw(x + (width * @box_margin) + @box_margin, y + (height * @box_margin) + @box_margin, z + 1)
   end
 
+  # Input Methods
+  def confirm_pressed
+    if @input_cooldown <= 0
+      if Gosu::button_down? Gosu::KbReturn
+        @input_cooldown = INPUT_COOLDOWN
+        return true
+      elsif Gosu::button_down? Gosu::KbSpace
+        @input_cooldown = INPUT_COOLDOWN
+        return true
+      else
+        return false
+      end
+    else
+      return false
+    end
+  end
+
+  def down_pressed
+    if @input_cooldown <= 0
+      if Gosu::button_down? Gosu::KbDown
+      @input_cooldown = INPUT_COOLDOWN
+      return true
+      else
+        return false
+      end
+    else
+      return false
+    end
+  end
+
+  def up_pressed
+    if Gosu::button_down? Gosu::KbUp
+
+    if @input_cooldown <= 0
+      @input_cooldown = INPUT_COOLDOWN
+      return true
+    else
+      return false
+    end
+    else
+      return false
+    end
+    end
 
 end

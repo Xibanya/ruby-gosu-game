@@ -2,18 +2,19 @@ require 'gosu'
 require_relative 'Main/GameEngine'
 
 class GameWindow < Gosu::Window
+
+  GAME_TITLE = 'Roobee Game'
+  RESOLUTION_WIDTH = 640
+  RESOLUTION_HEIGHT = 480
+
   attr_accessor :game_engine
-  attr_accessor :resolution_width
-  attr_accessor :resolution_height
   attr_accessor :fullscreen
   attr_accessor :box_sprite
 
   def initialize
-    @resolution_width = 640
-    @resolution_height = 480
     @fullscreen = false
-    super(@resolution_width, @resolution_height, fullscreen: @fullscreen)
-    self.caption = 'Roobings'
+    super(RESOLUTION_WIDTH, RESOLUTION_HEIGHT, fullscreen: @fullscreen)
+    self.caption = GAME_TITLE
     @game_engine = GameEngine.new(self)
 
   end
