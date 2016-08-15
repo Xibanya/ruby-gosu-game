@@ -3,6 +3,9 @@ require_relative 'GameEngine'
 class WidgetWindow
   attr_accessor :terminated
 
+  UNSELECTED = Gosu::Color.argb(0xff_ffffff) #white
+  SELECTED = Gosu::Color.argb(0xff_00ffff) #aqua
+
   INPUT_COOLDOWN = 10
 
   def initialize(window)
@@ -146,6 +149,19 @@ class WidgetWindow
     else
       return false
     end
+  end
+
+  def esc_pressed
+    if Gosu::button_down? Gosu::KbEscape
+      if @input_cooldown <= 0
+        @input_cooldown = INPUT_COOLDOWN
+        return true
+      else
+        return false
+      end
+    else
+      return false
     end
+  end
 
 end

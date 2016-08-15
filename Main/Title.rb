@@ -2,9 +2,6 @@ require_relative 'GameEngine'
 
 class Title < WidgetWindow
 
-  UNSELECTED = Gosu::Color.argb(0xff_ffffff) #white
-  SELECTED = Gosu::Color.argb(0xff_00ffff) #aqua
-
   TITLE_MENU = 0
     START = 0
     OPTIONS = 1
