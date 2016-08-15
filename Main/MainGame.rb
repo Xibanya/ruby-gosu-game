@@ -1,4 +1,5 @@
 require_relative 'GameEngine'
+require_relative '../Characters/Hero'
 
 class MainGame < WidgetWindow
 
@@ -16,6 +17,8 @@ class MainGame < WidgetWindow
 
     @pause_items = ['Resume', 'Quit To Title']
     @pause_selection = 0
+
+    @serghei = Hero.new(30, 200)
 
   end
 
@@ -60,10 +63,13 @@ class MainGame < WidgetWindow
     else
       if esc_pressed
         @paused = !@paused
-      end
+
+      else
+      @serghei.update
 
     end
     # end input handling
+      end
 
   end
 
@@ -73,6 +79,7 @@ class MainGame < WidgetWindow
     if @paused
       draw_pause_menu
     end
+    @serghei.draw
 
   end
 
