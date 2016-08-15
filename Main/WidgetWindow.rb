@@ -3,7 +3,7 @@ require_relative 'GameEngine'
 class WidgetWindow
   attr_accessor :terminated
 
-  INPUT_COOLDOWN = 8
+  INPUT_COOLDOWN = 10
 
   def initialize(window)
     @window = window
@@ -24,9 +24,13 @@ class WidgetWindow
     @font  = Gosu::Font.new(50, :name => 'Content/accid.ttf')
     @text_z = 10
     @text_box_z = 9
+
+    @input_cooldown = INPUT_COOLDOWN
+
+    @terminated = false
   end
 
-  def update
+  def update(parent)
 
     if @input_cooldown > 0
       @input_cooldown -= 1

@@ -1,12 +1,14 @@
 require_relative 'WidgetWindow'
 require_relative 'Title'
+require_relative 'MainGame'
 
 class GameEngine
-
   # Control States
   NONE = 0
   TITLE = 1
   MAIN = 2
+
+  attr_accessor :pending_control_state
 
   def initialize(window)
     @control_state = NONE
@@ -25,33 +27,24 @@ class GameEngine
     if @pending_control_state != NONE
       case @pending_control_state
         when TITLE
-          @window_list.push(Title.new(@window))
+          @current_window = Title.new(@window)
           @control_state = TITLE
+          @pending_control_state = NONE
+        when MAIN
+          @current_window = MainGame.new(@window)
+          @control_state = MAIN
           @pending_control_state = NONE
         else
           puts 'pending control state is something else'
       end
     end
 
-    if @window_list.length > 0
-      i = 0
-      while i < @window_list.length
-        @window_list[i].update
-        if @window_list[i].terminated
-          @window_list.delete_at(i)
+    @current_window.update(self)
 
-        else
-        i += 1
-      end
-    end
-
-    end
     end
 
   def draw
-    @window_list.each do |window|
-      window.draw
-    end
+    @current_window.draw
   end
 
 end
