@@ -7,5 +7,6 @@ Ruby is probably no good for games so this is more useful as a proof of concept 
 <p>
 <strong>Enter/Return</strong> - Confirm<br>
 <strong>Escape</strong> - Pause<br>
-<strong>Arrow Keys</strong> - Menu navigation
+<strong>Up/Down Arrow Keys</strong> - Menu navigation<br>
+<strong>Left/Right Arrow Keys</strong> - Move the character
 </p>
