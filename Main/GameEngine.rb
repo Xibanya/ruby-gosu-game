@@ -1,12 +1,11 @@
 require_relative 'WidgetWindow'
 require_relative 'Title'
 require_relative 'MainGame'
+require_relative 'GameState'
 
 class GameEngine
-  # Control States
-  NONE = 0
-  TITLE = 1
-  MAIN = 2
+
+  include GameState
 
   attr_accessor :pending_control_state
 

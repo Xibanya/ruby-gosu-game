@@ -12,7 +12,6 @@ class MainGame < WidgetWindow
     @title_pos_x = 50
     @title_pos_y = 50
 
-
     @paused = false
 
     @pause_items = ['Resume', 'Quit To Title']
@@ -50,7 +49,7 @@ class MainGame < WidgetWindow
         if @pause_selection == RESUME
           @paused = false
         elsif @pause_selection == QUIT
-          parent.pending_control_state = GameEngine::TITLE
+          parent.pending_control_state = TITLE
           self.terminated = true
         end
         # ---------------
@@ -104,7 +103,7 @@ class MainGame < WidgetWindow
   end
 
   def draw_hud
-    @font.draw("Pretend this is a good-lookin' HUD", 15, 15, GameText::TEXT_LAYER, 0.7, 0.7, UNSELECTED, mode = :default)
+    @font.draw("Pretend this is a good-lookin' HUD", 15, 15, TEXT_LAYER, 0.7, 0.7, UNSELECTED, mode = :default)
 
   end
 

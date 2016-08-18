@@ -1,10 +1,10 @@
 require_relative 'GameEngine'
+require_relative 'GameState'
 
 class GameText < Gosu::Font
+  include GameState
 
   attr_accessor :offset
-
-  TEXT_LAYER = 10
 
   def initialize(scale, path)
     super(scale, :name => path)

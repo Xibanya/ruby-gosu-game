@@ -1,18 +1,15 @@
 require 'gosu'
 require_relative 'Main/GameEngine'
+require_relative 'Main/GameState'
 
 class GameWindow < Gosu::Window
 
+  include GameState
 
   FULLSCREEN = true
   WINDOWED = false
 
-  GAME_TITLE = 'Roobee Game'
-  RESOLUTION_WIDTH = 640
-  RESOLUTION_HEIGHT = 480
-
   attr_accessor :game_engine
-  attr_accessor :box_sprite
   attr_accessor :fullscreen
 
   def initialize(fullscreen)

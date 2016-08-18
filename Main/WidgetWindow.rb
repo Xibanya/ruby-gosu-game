@@ -1,16 +1,14 @@
 require_relative 'GameEngine'
 require_relative 'Text'
+require_relative 'Input'
+require_relative 'GameState'
 
 class WidgetWindow
+
+  include GameState
+  include Input
+
   attr_accessor :terminated
-
-  RESOLUTION_WIDTH = 640
-  RESOLUTION_HEIGHT = 480
-
-  UNSELECTED = Gosu::Color.argb(0xff_ffffff) #white
-  SELECTED = Gosu::Color.argb(0xff_00ffff) #aqua
-
-  INPUT_COOLDOWN = 10
 
   def initialize(window)
     @window = window
@@ -28,7 +26,6 @@ class WidgetWindow
     @widget_list = Array.new
     @window_list = Array.new
 
-    #@font  = Gosu::Font.new(50, :name => 'Content/accid.ttf')
     @font = GameText.new(50, 'Content/accid.ttf')
     @text_box_z = 9
 
@@ -111,61 +108,5 @@ class WidgetWindow
     @box_source[8].draw(x + (width * @box_margin) + @box_margin, y + (height * @box_margin) + @box_margin, z + 1)
   end
 
-  # Input Methods
-  def confirm_pressed
-    if @input_cooldown <= 0
-      if Gosu::button_down? Gosu::KbReturn
-        @input_cooldown = INPUT_COOLDOWN
-        return true
-      elsif Gosu::button_down? Gosu::KbSpace
-        @input_cooldown = INPUT_COOLDOWN
-        return true
-      else
-        return false
-      end
-    else
-      return false
-    end
-  end
-
-  def down_pressed
-    if @input_cooldown <= 0
-      if Gosu::button_down? Gosu::KbDown
-        @input_cooldown = INPUT_COOLDOWN
-        return true
-      else
-        return false
-      end
-    else
-      return false
-    end
-  end
-
-  def up_pressed
-    if Gosu::button_down? Gosu::KbUp
-
-      if @input_cooldown <= 0
-        @input_cooldown = INPUT_COOLDOWN
-        return true
-      else
-        return false
-      end
-    else
-      return false
-    end
-  end
-
-  def esc_pressed
-    if Gosu::button_down? Gosu::KbEscape
-      if @input_cooldown <= 0
-        @input_cooldown = INPUT_COOLDOWN
-        return true
-      else
-        return false
-      end
-    else
-      return false
-    end
-  end
 
 end
