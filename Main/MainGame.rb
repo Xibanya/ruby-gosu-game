@@ -108,7 +108,7 @@ class MainGame < WidgetWindow
   end
 
   def draw_pause_menu
-    draw_box(20, 20, @text_box_z, 70, 40)
+    draw_box(20, 20, BOX_DEPTH, 70, 40)
     @font.draw_centered_text('Game Paused', RESOLUTION_WIDTH / 2, @title_pos_y, 1.5, UNSELECTED)
 
 

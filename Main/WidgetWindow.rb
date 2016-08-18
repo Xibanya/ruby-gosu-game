@@ -12,12 +12,11 @@ class WidgetWindow
 
   def initialize(window)
     @window = window
-    @box_margin = 8
     @box_source = Array.new
-    box_sprite =  Gosu::Image.new('content/UI-Window.png')
+    box_sprite =  Gosu::Image.new(BOX_SPRITE)
     for y in 0..3
       for x in 0..3
-        tile = Gosu::Image.new(window, box_sprite, true, x * @box_margin, y * @box_margin, @box_margin, @box_margin)
+        tile = Gosu::Image.new(window, box_sprite, true, x * BOX_MARGIN, y * BOX_MARGIN, BOX_MARGIN, BOX_MARGIN)
         @box_source.push(tile)
       end
     end
@@ -26,8 +25,7 @@ class WidgetWindow
     @widget_list = Array.new
     @window_list = Array.new
 
-    @font = GameText.new(50, 'Content/accid.ttf')
-    @text_box_z = 9
+    @font = GameText.new(MENU_FONT_SIZE, MENU_FONT)
 
     @input_cooldown = INPUT_COOLDOWN
 
@@ -68,7 +66,7 @@ class WidgetWindow
     end
 
     @window_list.each do |window|
-      draw_box(window.x, window.y, @text_box_z, window.width, window.height)
+      draw_box(window.x, window.y, BOX_DEPTH, window.width, window.height)
     end
 
     @widget_list.each do |widget|
@@ -82,30 +80,30 @@ class WidgetWindow
     @box_source[0].draw(x, y, z + 1)
 
     for i in 0..width
-      @box_source[1].draw(x + (i * @box_margin), y, z)
+      @box_source[1].draw(x + (i * BOX_MARGIN), y, z)
     end
 
-    @box_source[2].draw(x + (width * @box_margin) + @box_margin, y, z + 1)
+    @box_source[2].draw(x + (width * BOX_MARGIN) + BOX_MARGIN, y, z + 1)
 
     #mid row
     for i in 0..height
-      @box_source[3].draw(x, y + (i * @box_margin), z)
+      @box_source[3].draw(x, y + (i * BOX_MARGIN), z)
     end
 
     # middle - 4
 
     for i in 0..height
-      @box_source[5].draw(x + (width * @box_margin) + @box_margin, y + (i * @box_margin), z)
+      @box_source[5].draw(x + (width * BOX_MARGIN) + BOX_MARGIN, y + (i * BOX_MARGIN), z)
     end
 
     # lower row
-    @box_source[6].draw(x, y + (height * @box_margin) + @box_margin, z + 1)
+    @box_source[6].draw(x, y + (height * BOX_MARGIN) + BOX_MARGIN, z + 1)
 
     for i in 0..width
-      @box_source[7].draw(x + (i * @box_margin), y + (height * @box_margin) + @box_margin, z)
+      @box_source[7].draw(x + (i * BOX_MARGIN), y + (height * BOX_MARGIN) + BOX_MARGIN, z)
     end
 
-    @box_source[8].draw(x + (width * @box_margin) + @box_margin, y + (height * @box_margin) + @box_margin, z + 1)
+    @box_source[8].draw(x + (width * BOX_MARGIN) + BOX_MARGIN, y + (height * BOX_MARGIN) + BOX_MARGIN, z + 1)
   end
 
 

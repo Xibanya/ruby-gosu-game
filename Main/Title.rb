@@ -94,7 +94,7 @@ class Title < WidgetWindow
   def draw
     super
 
-    draw_box(20, 20, @text_box_z, 70, 40)
+    draw_box(20, 20, BOX_DEPTH, 70, 40)
 
     if @current_menu == TITLE_MENU
       draw_title_menu

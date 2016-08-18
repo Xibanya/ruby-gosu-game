@@ -10,6 +10,12 @@ module GameState
   SELECTED = Gosu::Color.argb(0xff_00ffff) #aqua
 
   TEXT_LAYER = 10
+  MENU_FONT = 'Content/accid.ttf'
+  MENU_FONT_SIZE = 50
+
+  BOX_MARGIN = 8
+  BOX_DEPTH = 9
+  BOX_SPRITE = 'content/UI-Window.png'
 
   # Control States
   NONE = 0
