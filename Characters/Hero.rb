@@ -6,21 +6,23 @@ class Hero
   MOVE_VELOCITY = 5
   MAX_SPEED = 100
 
-  GRAVITY = 15
-  JUMP_SPEED = 2
+  GRAVITY = 25
+  JUMP_SPEED = 1
   JUMP_VELOCITY = 150
-  MAX_JUMP = 200
+  MAX_JUMP = 100
 
   def initialize(initial_x, initial_y)
   @sprite = Gosu::Image.new('content/serghei.png')
     @pos_x = initial_x
     @pos_y = initial_y
-    @box = Rectangle.new(@pos_x, @pos_y, 94, 159)
+    @height = @sprite.height
+    @width = @sprite.width
     @delta = 0
   @y_delta = 0
-  @ground = initial_y
+  @ground = 300
     @move_cooldown = 0
     @jump_cooldown = 0
+
   end
 
   def update
@@ -29,6 +31,28 @@ class Hero
       if @move_cooldown < 0
         @move_cooldown = 0
       end
+    end
+
+    if @jump_cooldown > 0
+      @jump_cooldown -= GRAVITY
+      if @jump_cooldown <= 0
+        @jump_cooldown = 0
+        @falling = true
+      end
+    end
+
+    if @pos_y < (@ground - @height - MAX_JUMP)
+      @falling = true
+    end
+
+    if @falling
+      if @pos_y + @height < @ground
+        @pos_y += GRAVITY
+      end
+    end
+
+    if @pos_y + @height >= @ground
+      @falling = false
     end
 
     if right_pressed
@@ -60,36 +84,23 @@ class Hero
       end
     end
 
-    if @jump_cooldown > 0
-      @jump_cooldown -= GRAVITY
-      if @jump_cooldown < 0
-        @jump_cooldown = 0
-      end
-    end
-
-      @y_delta = (JUMP_SPEED * @jump_cooldown) / 10
-    if @y_delta > 0
-      if @pos_y - @y_delta >= @ground - MAX_JUMP
-      @pos_y -= @y_delta
-        end
-    else
-      @pos_y += GRAVITY
-      end
-      if @pos_y > @ground
-        @pos_y = @ground
-      end
-
     if up_pressed
-      if @pos_y == @ground
+      if @falling
+        return
+      end
       @jump_cooldown += JUMP_VELOCITY
-        end
+      if @jump_cooldown > MAX_JUMP
+        @jump_cooldown = MAX_JUMP
+      end
+      delta = (JUMP_SPEED * @jump_cooldown) / 10
+      @pos_y -= delta
     end
-
 
   end
 
   def draw
-    @sprite.draw(@pos_x, @pos_y, 2)
+    @sprite.draw(@pos_x, @pos_y, 2, scale_x = 1, scale_y = 1, color = 0xff_ffffff, mode = :default)
+
   end
 
   def right_pressed

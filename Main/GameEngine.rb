@@ -41,7 +41,7 @@ class GameEngine
 
     @current_window.update(self)
 
-    end
+  end
 
   def draw
     @current_window.draw

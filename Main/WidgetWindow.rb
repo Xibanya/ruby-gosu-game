@@ -14,10 +14,10 @@ class WidgetWindow
     @box_source = Array.new
     box_sprite =  Gosu::Image.new('content/UI-Window.png')
     for y in 0..3
-        for x in 0..3
-          tile = Gosu::Image.new(window, box_sprite, true, x * @box_margin, y * @box_margin, @box_margin, @box_margin)
-          @box_source.push(tile)
-        end
+      for x in 0..3
+        tile = Gosu::Image.new(window, box_sprite, true, x * @box_margin, y * @box_margin, @box_margin, @box_margin)
+        @box_source.push(tile)
+      end
     end
 
     @child_window_list = Array.new
@@ -54,10 +54,10 @@ class WidgetWindow
       end
     else
       while i < @widget_list.length
-      @widget_list[i].update
-      i += 1
-    end
+        @widget_list[i].update
+        i += 1
       end
+    end
 
   end
 
@@ -81,14 +81,14 @@ class WidgetWindow
     @box_source[0].draw(x, y, z + 1)
 
     for i in 0..width
-    @box_source[1].draw(x + (i * @box_margin), y, z)
+      @box_source[1].draw(x + (i * @box_margin), y, z)
     end
 
     @box_source[2].draw(x + (width * @box_margin) + @box_margin, y, z + 1)
 
     #mid row
     for i in 0..height
-    @box_source[3].draw(x, y + (i * @box_margin), z)
+      @box_source[3].draw(x, y + (i * @box_margin), z)
     end
 
     # middle - 4
@@ -127,8 +127,8 @@ class WidgetWindow
   def down_pressed
     if @input_cooldown <= 0
       if Gosu::button_down? Gosu::KbDown
-      @input_cooldown = INPUT_COOLDOWN
-      return true
+        @input_cooldown = INPUT_COOLDOWN
+        return true
       else
         return false
       end
@@ -140,12 +140,12 @@ class WidgetWindow
   def up_pressed
     if Gosu::button_down? Gosu::KbUp
 
-    if @input_cooldown <= 0
-      @input_cooldown = INPUT_COOLDOWN
-      return true
-    else
-      return false
-    end
+      if @input_cooldown <= 0
+        @input_cooldown = INPUT_COOLDOWN
+        return true
+      else
+        return false
+      end
     else
       return false
     end

@@ -30,9 +30,9 @@ class GameWindow < Gosu::Window
   end
 
   def draw
-      if @game_engine
-        @game_engine.draw
-      end
+    if @game_engine
+      @game_engine.draw
+    end
   end
 
 end

@@ -18,7 +18,7 @@ class MainGame < WidgetWindow
     @pause_items = ['Resume', 'Quit To Title']
     @pause_selection = 0
 
-    @serghei = Hero.new(30, 200)
+    @serghei = Hero.new(30, 0)
 
   end
 
@@ -31,45 +31,45 @@ class MainGame < WidgetWindow
     #
     ############################
     if @paused
-    # change selected item
-    if down_pressed
+      # change selected item
+      if down_pressed
         @pause_selection += 1
         @pause_selection = 0 if @pause_selection >= @pause_items.length
 
-    elsif up_pressed
+      elsif up_pressed
         @pause_selection -= 1
         @pause_selection = @pause_items.length - 1 if @pause_selection < 0
 
-      # ----------------------
+        # ----------------------
 
-      # select an item
-    elsif confirm_pressed
-      if @pause_selection == RESUME
-        @paused = false
-      elsif @pause_selection == QUIT
-        parent.pending_control_state = GameEngine::TITLE
-        self.terminated = true
+        # select an item
+      elsif confirm_pressed
+        if @pause_selection == RESUME
+          @paused = false
+        elsif @pause_selection == QUIT
+          parent.pending_control_state = GameEngine::TITLE
+          self.terminated = true
+        end
+        # ---------------
       end
-      # ---------------
-    end
       #end if paused
-    ##############################
+      ##############################
 
-    ##############################
-    #
-    # NOT PAUSED
-    #
-    ###############################
+      ##############################
+      #
+      # NOT PAUSED
+      #
+      ###############################
     else
       if esc_pressed
         @paused = !@paused
 
       else
-      @serghei.update
+        @serghei.update
 
-    end
-    # end input handling
       end
+      # end input handling
+    end
 
   end
 
