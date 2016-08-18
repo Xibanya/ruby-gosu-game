@@ -105,28 +105,24 @@ class Title < WidgetWindow
   end
 
   def draw_title_menu
-    @font.draw_centered_text('Title Menu', RESOLUTION_WIDTH / 2, @title_pos_y, @text_z, 1.5, UNSELECTED)
-
+    @font.draw_centered_text('Title Menu', RESOLUTION_WIDTH / 2, @title_pos_y, 1.5, UNSELECTED)
     for i in 0..@title_items.length
       color = UNSELECTED
       if i == @title_selection
         color = SELECTED
       end
-      @font.draw(@title_items[i], @title_pos_x, @title_pos_y + 70 + (40 * i), @text_z, 1, 1, color, mode = :default)
+      @font.draw_text(@title_items[i], @title_pos_x, @title_pos_y + 70, i, color)
     end
   end
 
   def draw_options_menu
-    #@font.draw('Options Menu', @title_pos_x, @title_pos_y, @text_z, 1.5, 1.5, UNSELECTED, mode = :default)
-    @font.draw_centered_text(text = 'Options Menu', x = RESOLUTION_WIDTH / 2, y = @title_pos_y, z = @text_z, scale = 1.5, color = UNSELECTED)
-
-
+    @font.draw_centered_text('Options Menu', RESOLUTION_WIDTH / 2, @title_pos_y, 1.5, UNSELECTED)
     for i in 0..@options_items.length
       color = UNSELECTED
       if i == @options_selection
         color = SELECTED
       end
-      @font.draw(@options_items[i], @title_pos_x, @title_pos_y + 70 + (40 * i), @text_z, 1, 1, color, mode = :default)
+      @font.draw_text(@options_items[i], @title_pos_x, @title_pos_y + 70, i, color)
     end
   end
 

@@ -30,7 +30,6 @@ class WidgetWindow
 
     #@font  = Gosu::Font.new(50, :name => 'Content/accid.ttf')
     @font = GameText.new(50, 'Content/accid.ttf')
-    @text_z = 10
     @text_box_z = 9
 
     @input_cooldown = INPUT_COOLDOWN

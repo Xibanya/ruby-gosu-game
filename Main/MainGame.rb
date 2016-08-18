@@ -104,14 +104,13 @@ class MainGame < WidgetWindow
   end
 
   def draw_hud
-    @font.draw("Pretend this is a good-lookin' HUD", 15, 15, @text_z, 0.7, 0.7, UNSELECTED, mode = :default)
+    @font.draw("Pretend this is a good-lookin' HUD", 15, 15, GameText::TEXT_LAYER, 0.7, 0.7, UNSELECTED, mode = :default)
 
   end
 
   def draw_pause_menu
     draw_box(20, 20, @text_box_z, 70, 40)
-    #@font.draw('Game Paused', @title_pos_x, @title_pos_y, @text_z, 1.5, 1.5, UNSELECTED, mode = :default)
-    @font.draw_centered_text(text = 'Game Paused', x = RESOLUTION_WIDTH / 2, y = @title_pos_y, z = @text_z, scale = 1.5, color = UNSELECTED)
+    @font.draw_centered_text('Game Paused', RESOLUTION_WIDTH / 2, @title_pos_y, 1.5, UNSELECTED)
 
 
     for i in 0..@pause_items.length
@@ -119,7 +118,7 @@ class MainGame < WidgetWindow
       if i == @pause_selection
         color = SELECTED
       end
-      @font.draw(@pause_items[i], @title_pos_x, @title_pos_y + 70 + (40 * i), @text_z, 1, 1, color, mode = :default)
+      @font.draw_text(@pause_items[i], @title_pos_x, @title_pos_y + 70, i, color)
     end
   end
 
