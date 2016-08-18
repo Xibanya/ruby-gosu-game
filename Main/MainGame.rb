@@ -20,6 +20,8 @@ class MainGame < WidgetWindow
 
     @serghei = Hero.new(30, 0)
 
+    @platforms = Array.new
+
   end
 
   def update(parent)
@@ -65,7 +67,7 @@ class MainGame < WidgetWindow
         @paused = !@paused
 
       else
-        @serghei.update
+        @serghei.update(@platforms)
 
       end
       # end input handling

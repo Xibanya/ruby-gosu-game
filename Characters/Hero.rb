@@ -25,7 +25,7 @@ class Hero
 
   end
 
-  def update
+  def update(entities)
     if @move_cooldown > 0
       @move_cooldown -= FRICTION
       if @move_cooldown < 0
