@@ -1,7 +1,11 @@
 require_relative 'GameEngine'
+require_relative 'Text'
 
 class WidgetWindow
   attr_accessor :terminated
+
+  RESOLUTION_WIDTH = 640
+  RESOLUTION_HEIGHT = 480
 
   UNSELECTED = Gosu::Color.argb(0xff_ffffff) #white
   SELECTED = Gosu::Color.argb(0xff_00ffff) #aqua
@@ -24,7 +28,8 @@ class WidgetWindow
     @widget_list = Array.new
     @window_list = Array.new
 
-    @font  = Gosu::Font.new(50, :name => 'Content/accid.ttf')
+    #@font  = Gosu::Font.new(50, :name => 'Content/accid.ttf')
+    @font = GameText.new(50, 'Content/accid.ttf')
     @text_z = 10
     @text_box_z = 9
 

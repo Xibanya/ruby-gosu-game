@@ -21,6 +21,7 @@ class MainGame < WidgetWindow
     @serghei = Hero.new(30, 0)
 
     @platforms = Array.new
+    @mobs = Array.new
 
   end
 
@@ -80,14 +81,38 @@ class MainGame < WidgetWindow
 
     if @paused
       draw_pause_menu
+    else
+      draw_hud
     end
+
+
+
+    if @platforms.length > 0
+      @platforms.each do |platform|
+        platform.draw
+      end
+    end
+
+    if @mobs.length > 0
+      @mobs.each do |mob|
+        mob.draw
+      end
+    end
+
     @serghei.draw
+
+  end
+
+  def draw_hud
+    @font.draw("Pretend this is a good-lookin' HUD", 15, 15, @text_z, 0.7, 0.7, UNSELECTED, mode = :default)
 
   end
 
   def draw_pause_menu
     draw_box(20, 20, @text_box_z, 70, 40)
-    @font.draw('Game Paused', @title_pos_x, @title_pos_y, @text_z, 1.5, 1.5, UNSELECTED, mode = :default)
+    #@font.draw('Game Paused', @title_pos_x, @title_pos_y, @text_z, 1.5, 1.5, UNSELECTED, mode = :default)
+    @font.draw_centered_text(text = 'Game Paused', x = RESOLUTION_WIDTH / 2, y = @title_pos_y, z = @text_z, scale = 1.5, color = UNSELECTED)
+
 
     for i in 0..@pause_items.length
       color = UNSELECTED
